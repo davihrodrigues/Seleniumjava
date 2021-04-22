@@ -1,4 +1,4 @@
-package hellowordselenium;
+package hellowordselenium.scriptteste;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -28,6 +28,7 @@ public class jobtittle {
 		
 		driver.findElement(By.cssSelector("#jobTitle_jobDescription")).sendKeys("Teste para add job tittle");
 		driver.findElement(By.id("btnSave")).click();
+		driver.quit();
 				
       // É esperado que apareça "Sucefull saved" com a descrição "Teste para add job tittle"
 	

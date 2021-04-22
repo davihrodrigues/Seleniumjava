@@ -1,4 +1,4 @@
-package hellowordselenium;
+package hellowordselenium.scriptteste;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -23,8 +23,7 @@ public class testjaexistente {
 		driver.findElement(By.xpath("//input[@id='btnAdd']")).click();
 	//Escreve Tester	
 		driver.findElement(By.cssSelector("#jobTitle_jobTitle")).sendKeys("Tester");
-		
-		
+		driver.quit();	
 		
 		//é esperado aparecer string em vermelho "Already exists" Abaixo de job Tittle
 		
