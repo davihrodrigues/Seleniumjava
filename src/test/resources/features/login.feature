@@ -16,6 +16,7 @@ Funcionalidade: Login
       
    @LoginFalha
   Cenario: Login com falha no Orange HRM
+  	Dado que o usuario esteja na pagina de login
 	  Quando o usuario inputar as credenciais na pagina
       | usuario | senha    |
       | asdf   | asdf123 |

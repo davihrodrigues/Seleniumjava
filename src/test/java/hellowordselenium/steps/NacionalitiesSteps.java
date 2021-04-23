@@ -2,7 +2,6 @@ package hellowordselenium.steps;
 
 import hellowordselenium.pageobjects.NacionalitiePage;
 import hellowordselenium.pageobjects.PaginaInicialPage;
-import io.cucumber.datatable.DataTable;
 import io.cucumber.java.pt.Dado;
 import io.cucumber.java.pt.Entao;
 import io.cucumber.java.pt.Quando;

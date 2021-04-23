@@ -2,9 +2,11 @@ package hellowordselenium.pageobjects;
 
 import org.junit.Assert;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Action;
+import org.openqa.selenium.interactions.Actions;
 
 public class LoginPage extends BasePage {
-	private String invalid = "//span[@id='spanMessage']";
+	private String invalid = "//span[contains(.,'Invalid credentials')]";
 	private String campoUsername = "//input[@id='txtUsername']";
 	private String campoPassword = "#txtPassword";
 	private String botaoLogin = "btnLogin";
@@ -33,7 +35,11 @@ public class LoginPage extends BasePage {
 		driver.navigate().to("https://opensource-demo.orangehrmlive.com/index.php/admin/saveSystemUser");
 
 	}
+	public WebElement getelementoerro() {
+		return getElementByXpath(invalid);
+	}
+	
 	public void invalidCredencial() {
-		Assert.assertTrue(getElementByXpath(invalid).isDisplayed());
+		Assert.assertTrue(getelementoerro().isDisplayed());
 	}
 }

@@ -13,8 +13,8 @@ public class Navegacao {
 		if (driver == null) {
 			System.setProperty("webdriver.gecko.driver", ".\\src\\main\\resources\\geckodriver.exe");
 			driver = new FirefoxDriver();
-			driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-			driver.manage().timeouts().pageLoadTimeout(30, TimeUnit.SECONDS);
+			driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
+			driver.manage().timeouts().pageLoadTimeout(15, TimeUnit.SECONDS);
 			driver.manage().window().maximize();
 		}
 		return driver;

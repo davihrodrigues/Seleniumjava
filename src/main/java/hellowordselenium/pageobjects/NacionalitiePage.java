@@ -1,11 +1,12 @@
 package hellowordselenium.pageobjects;
 
 import org.junit.Assert;
+import org.openqa.selenium.WebElement;
 
 public class NacionalitiePage extends BasePage {
 
 	private String nacionalidade = "";
-	private String nomeRequired = "//span[@class='validation-error']";
+	private String nomeRequired = "//span[contains(.,'Required')]";
 	private String opcaoMenuNacionalities = "//*[@id='menu_admin_nationality']";
 	private String botaoAddNacionalitie = "//*[@id='btnAdd']";
 	private String inputNameNacionalitie = "//*[@id='nationality_name']";
@@ -27,11 +28,14 @@ public class NacionalitiePage extends BasePage {
 	public void verificaNacionalidadeCadastrada() {
 		Assert.assertTrue(getElementByXpath(opcaoNaLista).isDisplayed());
 	}
+	
+	public WebElement getelementorequired() {
+		return getElementByXpath(nomeRequired);
+	} 	
 	public void Required() {
-		Assert.assertTrue(getElementByXpath(nomeRequired).isDisplayed());
+		Assert.assertTrue(getelementorequired().isDisplayed());
 	}
-	
-	
+		
 	public void validaLabelNacionalitieExistente(String mensagem) {
 		Assert.assertTrue(getElementByXpath(labelNacionalitieCadastrada).getText().equals(mensagem));
 	}
