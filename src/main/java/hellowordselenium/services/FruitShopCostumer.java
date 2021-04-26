@@ -12,7 +12,9 @@ import io.restassured.http.ContentType;
 public class FruitShopCostumer {
 
 	private static String endpoint = "https://api.predic8.de:443/shop/customers/";
-
+	String dadoUsername = "Davi";
+	String dadoLastname = "Haubricht";
+	String dadoVazio = "";
 	@Test
 	public void getResponseStatus() {
 		given().when().get(endpoint).then().assertThat().statusCode(200);
@@ -31,8 +33,8 @@ public class FruitShopCostumer {
 	@Test
 	public void postCustomerTest() {
 		JSONObject requestParams = new JSONObject();
-		String dadoUsername = "Davih";
-		String dadoLastname = "Rodrigues";
+		
+		
 		requestParams.put("firstname", dadoUsername);
 		requestParams.put("lastname", dadoLastname);
 		System.out.println(requestParams.toJSONString());
@@ -50,8 +52,7 @@ public class FruitShopCostumer {
 	@Test
 	public void postCustomerValidationBodyTest() {
 		JSONObject requestParams = new JSONObject();
-		String dadoUsername = "Davi";
-		String dadoLastname = "Haubricht";
+		
 		requestParams.put("firstname", dadoUsername);
 		requestParams.put("lastname", dadoLastname);
 		System.out.println(requestParams.toJSONString());
@@ -70,32 +71,10 @@ public class FruitShopCostumer {
 	@Test
 	public void postCustomerVazio() {
 		JSONObject requestParams = new JSONObject();
-		String dadoUsername = null;
-		String dadoLastname = null;
 		
-		requestParams.put("firstname", dadoUsername);
-		requestParams.put("lastname", dadoLastname);
-		System.out.println(requestParams.toJSONString());
-		System.out.println(endpoint);
-		given()
-			.body(requestParams.toJSONString())
-			.contentType(ContentType.JSON)
-		.when()
-			.post(endpoint)
-		.then().
-			statusCode(400)
-			.body("firstname", Matchers.equalTo(dadoUsername))
-			.body("lastname", Matchers.equalTo(dadoLastname));
-	}
-	
-	@Test
-	public void postCustumero() {
-		JSONObject requestParams = new JSONObject();
-		String dadoUsername = "Davi";
-		String dadoLastname = "";
 		
-		requestParams.put("firstname", dadoUsername);
-		requestParams.put("lastname", dadoLastname);
+		requestParams.put("firstname", dadoVazio);
+		requestParams.put("lastname", dadoVazio);
 		System.out.println(requestParams.toJSONString());
 		System.out.println(endpoint);
 		given()
@@ -105,6 +84,26 @@ public class FruitShopCostumer {
 			.post(endpoint)
 		.then().
 			statusCode(201)
+			.body("firstname", Matchers.equalTo(dadoVazio))
+			.body("lastname", Matchers.equalTo(dadoVazio));
+	}
+	
+	@Test
+	public void postCustumero() {
+		JSONObject requestParams = new JSONObject();
+
+		
+		requestParams.put("firstname", dadoUsername);
+		requestParams.put("lastname", dadoVazio);
+		System.out.println(requestParams.toJSONString());
+		System.out.println(endpoint);
+		given()
+			.body(requestParams.toJSONString())
+			.contentType(ContentType.JSON)
+		.when()
+			.post(endpoint)
+		.then().
+			statusCode(400)
 			.body("firstname", Matchers.equalTo(dadoUsername));
 			
 	}
@@ -112,8 +111,7 @@ public class FruitShopCostumer {
 	@Test
     public void putCustomerTest(){
         JSONObject requestParams = new JSONObject();
-    	String dadoUsername = "Davih";
-		String dadoLastname = "Rodrigues";
+        
 		requestParams.put("firstname", dadoUsername);
 		requestParams.put("lastname", dadoLastname);
 
@@ -128,8 +126,6 @@ public class FruitShopCostumer {
 	@Test
     public void putCustomerNaoexistente(){
         JSONObject requestParams = new JSONObject();
-        String dadoUsername = "Davi";
-        String dadoLastname = "Rodrigues";
         requestParams.put("firstname", dadoUsername);
 		requestParams.put("lastname", dadoLastname);
 		
@@ -146,10 +142,8 @@ public class FruitShopCostumer {
 	@Test
     public void putCustomervazio(){
         JSONObject requestParams = new JSONObject();
-    	String dadoUsername = "";
-		String dadoLastname = "";
-		requestParams.put("firstname", dadoUsername);
-		requestParams.put("lastname", dadoLastname);
+		requestParams.put("firstname", dadoVazio);
+		requestParams.put("lastname", dadoVazio);
 
         given().
                 body(requestParams.toJSONString()).contentType(ContentType.JSON).
